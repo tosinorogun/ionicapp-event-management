@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Eventra",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Eventra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "1e28bcf1"
+}
