@@ -1,0 +1,88 @@
+<ion-header mode="ios" class="ion-no-border" translucent="true">
+  <ion-toolbar mode="ios" class="white-background">
+    <ion-buttons>
+      <ion-img class="logo-home ion-margin-bottom ion-margin-start" src="assets/img/logo.png"></ion-img>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary">
+        Hi&nbsp;<span class="">{{firstname}}</span>!
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.3" pullMin="80" pullMax="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      pullingText="Refresh"
+      refreshingSpinner="lines"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row *ngIf="pageData" class="ion-align-items-center">
+
+      <ion-col sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="3" sizeXl="3">
+        <div class="main-col-height tertiary-background ion-padding ion-text-center">
+          <ion-icon mode="ios" class="font-300" name="happy" color="light"></ion-icon>
+          <div class="white padding-small-bottom">All Events</div>
+          <div class="white font-150 bold">{{ pageData.all_event }}</div>
+        </div>
+      </ion-col>
+
+      <ion-col sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="3" sizeXl="3">
+        <div class="main-col-height tertiary-background ion-padding ion-text-center">
+          <ion-icon mode="ios" class="font-300" name="time" color="light"></ion-icon>
+          <div class="white padding-small-bottom">Upcoming</div>
+          <div class="white font-150 bold">{{ pageData.upcoming_event }}</div>
+        </div>
+      </ion-col>
+
+      <ion-col sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="3" sizeXl="3">
+        <div class="main-col-height tertiary-background ion-padding ion-text-center">
+          <ion-icon mode="ios" class="font-300" name="key" color="light"></ion-icon>
+          <div class="white padding-small-bottom">Total Invites</div>
+          <div class="white font-150 bold">{{ pageData.total_invite }}</div>
+        </div>
+      </ion-col>
+
+      <ion-col sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="3" sizeXl="3">
+        <div class="main-col-height tertiary-background ion-padding ion-text-center">
+          <ion-icon mode="ios" class="font-300" name="walk" color="light"></ion-icon>
+          <div class="white padding-small-bottom">Total Pass</div>
+          <div class="white font-150 bold">{{ pageData.total_pass }}</div>
+        </div>
+      </ion-col>
+
+      <ion-col (click)="restApi.doNavigate('forward', 'guest')" sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="3" sizeXl="3">
+        <div class="main-col-height primary-background ion-padding ion-text-center">
+          <ion-icon mode="ios" class="font-300" name="people" color="light"></ion-icon>
+          <div class="white padding-small-bottom">Arrived Guests</div>
+          <div class="white">
+            <span class="font-150 bold">{{ pageData.total_arrived }}</span>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col (click)="restApi.doNavigate('root', 'tabs/scan')" sizeXs="6" sizeSm="4" sizeMd="4" sizeLg="3" sizeXl="3">
+        <div class="main-col-height tertiary-background ion-padding ion-text-center">
+          <ion-icon mode="ios" class="font-300" name="scan" color="light"></ion-icon>
+          <div class="white padding-small-bottom">Total Scans</div>
+          <div class="white font-150 bold">{{ pageData.total_scan }}</div>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-text-center ion-padding-horizontal ion-padding-top" >
+    <ion-button (click)="restApi.doNavigate('forward', 'guest')" size="large" color="tertiary" expand="full" shape="round">
+    <!-- <ion-button (click)="getQrCodeData('')" size="large" color="warning" expand="full" shape="round" class="ion-margin-top"> -->
+      <ion-icon mode="ios" size="large" slot="start" name="people-outline"></ion-icon>
+      View Arrived Guests
+    </ion-button>
+  </div>
+
+</ion-content>

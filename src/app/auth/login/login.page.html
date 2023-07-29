@@ -1,0 +1,42 @@
+<ion-content scrollY="false">
+
+  <div class="center-parent bg-profile">
+
+    <ion-card class="center-child" mode="ios">
+      <ion-card-content>
+        <ion-img class="logo ion-margin-bottom" src="assets/img/logo-full.png"></ion-img>
+        <!-- <div class="ion-text-center dark">Account Login</div> -->
+
+        <form #form="ngForm" (ngSubmit)="login(form)">
+
+          <ion-item mode="ios" class="">
+              <ion-label position="floating" color="medium">Email Address</ion-label>
+              <ion-input clearInput="true" [pattern]="emailValidation" name="email" type="email" placeholder="you@email.com" ngModel required inputmode="email" mode="ios"></ion-input>
+          </ion-item>
+
+          <ion-item mode="ios" class="">
+              <ion-label position="floating" color="medium" mode="ios">Password</ion-label>
+              <ion-input clearInput="true" name="password" type="password" placeholder="*********" ngModel required></ion-input>
+          </ion-item>
+
+          <ion-row class="ion-padding-vertical">
+            <ion-col>
+              <ion-button type="submit" [disabled]="form.invalid" expand="block" color="primary" mode="ios">
+                <ion-icon size="large" slot="end" name="log-in-outline"></ion-icon>
+                Account Login
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <div class="ion-text-center" (click)="infoAlert()">
+            New Here? <ion-text mode="ios" class="primary">Signup</ion-text>
+          </div>
+
+        </form>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>

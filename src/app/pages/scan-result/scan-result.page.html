@@ -1,0 +1,60 @@
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+
+      <div class="padding-small-bottom ion-text-center">
+        <ion-badge *ngIf="postData.access_request_code === 0" mode="ios" color="success" slot="start" class="ion-padding-horizontal">Status: Active Access</ion-badge>
+        <ion-badge *ngIf="postData.first_scan === true" mode="ios" color="dark" slot="start" class="ion-padding-horizontal">First Entry Request </ion-badge>
+        <ion-badge *ngIf="postData.first_scan === false && postData.access_request_code === 1" mode="ios" color="warning" slot="start" class="ion-padding-horizontal">Re-entry Request</ion-badge>
+      </div>
+
+      <!-- <div *ngIf="postData.access_request_code === 1" lines="none" class="ion-margin-bottom">Please compare Access Card with Scan Result presented below to <span class="bold">Accept</span> or <span class="bold">Decline</span> access.</div> -->
+      <div class="ion-padding-top">Card Type: <span class="bold">{{postData.card_type}}</span></div>
+      <div class="padding-small-top">Card Number: <span class="bold">{{postData.card_no}}</span></div>
+      <div class="padding-small-top">Scan Request: <span class="bold">{{postData.access_request}}</span></div>
+
+        <div class="ion-text-center ion-padding-horizontal ion-padding-top ion-margin-top">
+          <ion-button *ngIf="postData.access_request_code === 1" (click)="logAccessResult()" size="default" color="success" expand="full" shape="round">
+            <ion-icon size="large" slot="start" name="checkmark"></ion-icon>
+            Grant Access
+          </ion-button>
+          <ion-button *ngIf="postData.access_request_code === 0" (click)="logAccessResult()" size="default" color="warning" expand="full" shape="round">
+            <ion-icon size="large" slot="start" name="scan"></ion-icon>
+            Scan to Leave
+          </ion-button>
+        </div>
+        <div *ngIf="postData.access_request_code === 1" class="ion-text-center ion-padding-horizontal padding-small-vertical">
+          <ion-button (click)="closeScanResult('declined')" size="large" color="primary" expand="full" shape="round">
+            <ion-icon size="large" slot="start" name="close"></ion-icon>
+            Decline Access
+          </ion-button>
+        </div>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!postData.data.length" class="ion-padding ion-margin-top ion-text-center medium">No scan history for <span class="bold">{{postData.card_no}}</span></div>
+
+  <span *ngIf="postData.data.length">
+  <ion-list lines="full">
+    <ion-list-header class="ion-no-padding ion-margin-bottom">
+      <ion-label>{{postData.card_no}} (<span class="medium">{{postData.data.length}} Scan History</span>)</ion-label>
+    </ion-list-header>
+
+      <ion-item *ngFor="let entry of postData.data" class="ion-no-padding">
+        <ion-label mode="ios" color="dark">
+          <h2>{{ entry.scan_action }}</h2>
+          <h3 class="tertiary">{{ entry.scan_date }}</h3>
+        </ion-label>
+        <ion-label mode="ios" color="dark">
+          <h2 *ngIf="entry.access_type === 1" class="ion-text-right success">{{ entry.lang }}</h2>
+          <h2 *ngIf="entry.access_type === 0" class="ion-text-right danger">{{ entry.lang }}</h2>
+          <h3 class="ion-text-right tertiary">{{ entry.scan_time }}</h3>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+  </span>
+
+</ion-content>

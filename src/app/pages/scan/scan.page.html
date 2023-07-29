@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true" [style.--background]="scanActive?'#00000000':'#ffffff'">
+
+  <div [hidden]="scanActive" class="center-parent">
+    <div class="center-child ion-text-center ion-padding">
+      <div class="medium ion-margin-bottom ion-padding">Please press the button below to start scanning.</div>
+
+      <ion-button (click)="startScanner()" mode="ios" size="large" color="primary" shape="round">
+        <!-- <ion-button (click)="getQrCodeData('e4da3b7fbbce2345d7772b0674a318d5')" size="large" color="primary" expand="full" shape="round" class="ion-margin-top">
+         -->
+        <ion-icon size="large" slot="start" name="scan"></ion-icon>
+        Scan QRCode
+      </ion-button>
+
+      <!-- <div class="ion-padding-top">
+        <ion-button (click)="closePage()" mode="ios" color="danger" expand="block">Cancel Scanner</ion-button>
+      </div> -->
+
+    </div>
+  </div>
+
+  <ion-row class="scan-button" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding ion-text-center">
+      <ion-button (click)="closePage()" size="large" mode="ios" shape="round" color="primary">End Scan Session</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div class="scan-box" [hidden]="!scanActive"></div>
+
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Guest List</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button mode="ios" routerLink="/add-guest" routerDirection="forward">Add New
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.3" pullMin="80" pullMax="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      pullingText="Refresh"
+      refreshingSpinner="lines"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <span *ngIf="pageData">
+  <h1 *ngIf="pageData.length === 1" class="padding-small-bottom">{{pageData.length}} Guest has arrived</h1>
+  <h1 *ngIf="pageData.length > 1" class="padding-small-bottom">{{pageData.length}} Guests have arrived</h1>
+
+  <ion-list mode="ios" lines="full" class="">
+
+    <ion-item mode="ios" *ngFor="let guest of pageData; let i = index;" class="ion-no-padding">
+      <div class="ion-padding-end">{{i+1}} </div>
+      <ion-label mode="ios" color="dark">
+        <h2>{{ guest.card_type }}</h2>
+        <h3 class="tertiary">{{ guest.entry_date }}</h3>
+      </ion-label>
+      <ion-label mode="ios" color="dark">
+        <h2 class="ion-text-right success">{{ guest.card_no }}</h2>
+        <h3 class="ion-text-right tertiary">{{ guest.entry_time }}</h3>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  </span>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Account Logout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card mode="ios">
+    <ion-card-content>
+
+      <div class="medium ion-padding-vertical">
+        When you logout, we will terminate all your sessions and
+        you will be required to login the next time you launch the App.
+      </div>
+
+      <div class="primary ion-padding-vertical">
+        Do you wish to continue?
+      </div>
+
+      <ion-button (click)="logout()" color="primary" expand="full" shape="round"  class="ion-margin" mode="ios">
+        <ion-icon size="large" slot="end" name="log-out-outline"></ion-icon>
+        Yes, Sign me Out!
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

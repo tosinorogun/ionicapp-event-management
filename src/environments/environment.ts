@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:8888/eventra-api/v2/',
+  qrCodeUrl: 'http://localhost:8888/eventra-api/v2/auth/qrcodes/',
+  avatarUrl: 'http://localhost:8888/eventra-api/v2/auth/avatar/',
+  storageUrl: 'http://localhost:8888/eventra-api/v2/storage/',
+  tourImageUrl: 'http://localhost:8888/eventra-api/v2/storage/tour/',
+  socketEndpoint: 'http://localhost:3001'
 };
 
 /*
